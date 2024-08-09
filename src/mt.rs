@@ -239,6 +239,17 @@ impl Mt19937GenRand32 {
         mt
     }
 
+    /// Create a new Mersenne Twister random number generator from an explicit
+    /// internal state.
+    #[inline]
+    #[must_use]
+    pub fn new_with_state(idx: usize, state: [u32; N]) -> Self {
+        Self {
+            idx,
+            state: state.map(Wrapping),
+        }
+    }
+
     /// Create a new Mersenne Twister random number generator using the default
     /// fixed seed.
     ///
